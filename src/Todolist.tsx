@@ -16,27 +16,27 @@ type PropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (taskId: string, todolistId: string) => void
-    changeFilter: (value: FilterValuesType, todolistId: string) => void
+    changeFilter: (todolistId: string, value: FilterValuesType, ) => void
     addTask: (title: string, todolistId: string) => void
     changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
     changeTaskTitle: (id: string, newTitle: string, todolistId: string) => void
     filter: FilterValuesType
     removeTodolist: (todolistId: string) => void
-    changeTodolistTitle: (todolistId: string, newTitle: string) => void
+    changeTodolistTitle: (todolistId: string, title: string) => void
 }
 
 export function Todolist(props: PropsType) {
 
-    const onAllClickHandler = () => props.changeFilter("all", props.id);
-    const onActiveClickHandler = () => props.changeFilter("active", props.id);
-    const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
+    const onAllClickHandler = () => props.changeFilter( props.id,"all");
+    const onActiveClickHandler = () => props.changeFilter(props.id,"active");
+    const onCompletedClickHandler = () => props.changeFilter(props.id,"completed");
     const removeTodolist = () => props.removeTodolist(props.id)
 
     const addTask = (title: string) => {// f wrapper= props - id
         props.addTask(title, props.id)
     }
 
-    const changeTodolistTitle = (newTitle: string) => props.changeTodolistTitle(props.id, newTitle)
+    const changeTodolistTitle = () => props.changeTodolistTitle(props.id, props.title)
 
 
     return <div>
